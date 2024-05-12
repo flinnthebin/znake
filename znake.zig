@@ -51,8 +51,8 @@ fn setSnake(row: u8, col: u8, segment: u8) void {
 }
 
 fn initSnake() void {
-    var sRow: u8 = cnum.N_ROWS / 2;
-    var sCol: u8 = cnum.N_COLS / 2;
+    const sRow: u8 = cnum.N_ROWS / 2;
+    const sCol: u8 = cnum.N_COLS / 2;
     setSnake(sRow, sCol, cnum.snake.HEAD);
     setSnake(sRow, sCol - 1, cnum.snake.BODY);
     setSnake(sRow, sCol - 2, cnum.snake.BODY);
@@ -60,14 +60,15 @@ fn initSnake() void {
 }
 
 fn printGrid() void {
-    // TODO: clear screen
+    std.io.getStdOut().writeAll("\x1b[2J");
+
     // TODO: putchar newline
 
     var i: u8 = 0;
     var j: u8 = 0;
     while (i < cnum.N_ROWS) {
         while (j < cnum.N_COLS) {
-            var symbol: u8 = cnum.symbols[grid[i][j]];
+            const symbol: u8 = cnum.symbols[grid[i][j]];
             std.io.putchar(symbol);
             j += 1;
         }
