@@ -45,8 +45,8 @@ fn initSnake() void {
 }
 
 fn printGrid() void {
-    std.debug.print("\x1b[2J");
-    std.debug.print('\n');
+    std.io.getStdOut().writeAll("\x1b[2J");
+    std.io.getStdOut().writeAll('\n');
 
     var i: u8 = 0;
     var j: u8 = 0;
@@ -72,6 +72,12 @@ fn inputDir() u8 {
             'd' => direction = {},
 
             else => std.io.getStdOut().writeAll("invalid direction: {s}\n", .{direction}),
+        }
+        if (std.math.pow((lastDir - direction), 1) != 2) {
+            lastDir = direction;
+            return direction;
+        } else {
+            std.io.getStdOut().writeAll("bonk! cannot turn around 180 degrees!\n");
         }
     }
 }
