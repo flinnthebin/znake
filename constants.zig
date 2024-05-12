@@ -10,7 +10,7 @@
 // Grid Size/Snake Length
 const N_COLS = 15;
 const N_ROWS = 15;
-const MAX_SNAKE_LEN = (N_COLS * N_ROWS);
+const MAX_LEN = (N_COLS * N_ROWS);
 
 // Snake enum
 const snake = enum {
@@ -33,7 +33,7 @@ const symbols = [4]u8{ '.', '󱔎', '', '' };
 
 // Pseudo-Random Number Generator
 // Linear Congruential Generator
-// nextSeed = (a * X(currSeed) + c) mod n
+// nextSeed = ((a * currSeed + c) & m) % n
 
 // Multiplier
 const a = 1103515245;
@@ -41,15 +41,3 @@ const a = 1103515245;
 const c = 12345;
 // Mask
 const m = 0x7FFFFFFF;
-// Seed
-var rSeed: u8 = 0;
-
-// Set initial seed
-fn seedRNG(seed: u8) u8 {
-    rSeed = seed;
-}
-
-fn rValue(n: u8) u8 {
-    rSeed = (rSeed * a + c) & m;
-    return rSeed % n;
-}
