@@ -69,10 +69,10 @@ fn printGrid() void {
     while (i < cnum.N_ROWS) {
         while (j < cnum.N_COLS) {
             const symbol: u8 = cnum.symbols[grid[i][j]];
-            std.io.putchar(symbol);
+            std.io.getStdOut().writeAll(symbol);
             j += 1;
         }
-        std.io.putchar('\n');
+        std.io.getStdOut().writeAll('\n');
         i += 1;
     }
 }
