@@ -30,14 +30,3 @@ const dirs = enum {
 
 // Grid symbols (empty, head, body, apple)
 const symbols = [4]u8{ '.', '󱔎', '', '' };
-
-// Pseudo-Random Number Generator
-// Linear Congruential Generator
-// nextSeed = ((a * currSeed + c) & m) % n
-
-// Multiplier
-const a = 1103515245;
-// Increment
-const c = 12345;
-// Mask
-const m = 0x7FFFFFFF;

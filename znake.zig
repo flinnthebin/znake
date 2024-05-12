@@ -20,21 +20,6 @@ var growthFactor: u8 = 0;
 var snakeTail: u8 = 0;
 var lastDir: u8 = cnum.dirs.EAST;
 
-// Linear Congruential Generator
-// nextSeed = ((multiplier * currseed + increment) & mask) % n
-const Random = struct {
-    var rSeed: u8 = 0;
-
-    fn seedRNG(seed: u8) void {
-        rSeed = seed;
-    }
-
-    fn randomNumber(n: u8) u8 {
-        rSeed = (rSeed * cnum.a + cnum.c) & cnum.m;
-        return rSeed % n;
-    }
-};
-
 fn setSnakeGrid(row: u8, col: u8, segment: u8) void {
     grid[row][col] = segment;
 }
@@ -84,11 +69,9 @@ fn inputDir() u8 {
             'a' => direction = cnum.dirs.WEST,
             's' => direction = cnum.dirs.SOUTH,
             'd' => direction = cnum.dirs.EAST,
-            '\004' => std.posix.exit(0)
 
-            else => std.io.getStdOut().writeAll("invalid direction: {s}\n", .{direction});
+            else => std.io.getStdOut().writeAll("invalid direction: {s}\n", .{direction}),
         }
-
     }
 }
 
@@ -99,5 +82,17 @@ fn deltaCol(direction: u8) u8 {}
 fn moveSnakeGrid(newRow: u8, newCol: u8) bool {}
 
 fn moveSnakeMem(newRow: u8, newCol: u8) void {}
+
+fn updateApple() void {
+    const rng = std.Random();
+    const aRow: i32 = std.Random.intRangeLessThan(rng, i32, 0, cnum.N_ROWS);
+    const aCol: i32 = std.Random.intRangeLessThan(rng, i32, 0, cnum.N_COLS);
+
+    while (grid[aRow][aCol] != cnum.snake.EMPTY) {
+        grid[aRow][aCol] = cnum.snake.APPLE;
+    }
+}
+
+fn updateSnake(direction: u8) bool {}
 
 pub fn main() void {}
