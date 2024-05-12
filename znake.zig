@@ -60,9 +60,8 @@ fn initSnake() void {
 }
 
 fn printGrid() void {
-    std.io.getStdOut().writeAll("\x1b[2J");
-
-    // TODO: putchar newline
+    std.debug.print("\x1b[2J");
+    std.debug.print('\n');
 
     var i: u8 = 0;
     var j: u8 = 0;
@@ -72,12 +71,26 @@ fn printGrid() void {
             std.io.getStdOut().writeAll(symbol);
             j += 1;
         }
-        std.io.getStdOut().writeAll('\n');
+        std.debug.print('\n');
         i += 1;
     }
 }
 
-fn inputDir() u8 {}
+fn inputDir() u8 {
+    var direction: u8 = std.io.GenericReader().readByte();
+    while (direction) {
+        switch (direction) {
+            'w' => direction = cnum.dirs.NORTH,
+            'a' => direction = cnum.dirs.WEST,
+            's' => direction = cnum.dirs.SOUTH,
+            'd' => direction = cnum.dirs.EAST,
+            '\004' => std.posix.exit(0)
+
+            else => std.io.getStdOut().writeAll("invalid direction: {s}\n", .{direction});
+        }
+
+    }
+}
 
 fn deltaRow(direction: u8) u8 {}
 
