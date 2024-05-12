@@ -63,12 +63,13 @@ fn printGrid() void {
 
 fn inputDir() u8 {
     var direction: u8 = std.io.GenericReader().readByte();
+    const case = std.meta.stringToEnum(cnum.dirs, direction) orelse return;
     while (direction) {
-        switch (direction) {
-            'w' => direction = cnum.dirs.NORTH,
-            'a' => direction = cnum.dirs.WEST,
-            's' => direction = cnum.dirs.SOUTH,
-            'd' => direction = cnum.dirs.EAST,
+        switch (case) {
+            'w' => direction = {},
+            'a' => direction = {},
+            's' => direction = {},
+            'd' => direction = {},
 
             else => std.io.getStdOut().writeAll("invalid direction: {s}\n", .{direction}),
         }

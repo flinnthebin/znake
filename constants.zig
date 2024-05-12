@@ -1,10 +1,13 @@
-//   ____                _              _
-//  / ___|___  _ __  ___| |_ __ _ _ __ | |_ ___
-// | |   / _ \| '_ \/ __| __/ _` | '_ \| __/ __|
-// | |__| (_) | | | \__ \ || (_| | | | | |_\__ \
-//  \____\___/|_| |_|___/\__\__,_|_| |_|\__|___/
 //
-//  Const values for snake
+//   ____             __ _
+//  / ___|___  _ __  / _(_) __ _
+// | |   / _ \| '_ \| |_| |/ _` |
+// | |__| (_) | | | |  _| | (_| |
+//  \____\___/|_| |_|_| |_|\__, |
+//                         |___/
+//
+//  Configuration file! Play around
+//  with this and break things!
 //
 
 // Grid Size/Snake Length
@@ -23,9 +26,9 @@ const snake = enum {
 // Input enum
 const dirs = enum {
     NORTH,
-    EAST,
-    SOUTH,
     WEST,
+    SOUTH,
+    EAST,
 };
 
 // Grid symbols (empty, head, body, apple)
