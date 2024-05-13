@@ -32,4 +32,4 @@ const dirs = enum {
 };
 
 // Grid symbols (empty, head, body, apple)
-const symbols = [4]u8{ '.', '󱔎', '', '' };
+const symbols = [4]u8{ '󱔐', '󱔎', '', '' };
